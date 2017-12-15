@@ -1,6 +1,5 @@
 
-
-alphabet = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '3', 'i', 'j', 'k', 'l', '4', 'm', ' ', 'n', '5', 'o', 'p', 'q', 'r', '6', 's', 't', '\'', 'u', 'v', '7', 'w', 'x', '8', 'y', 'z', '?', '9']
+alphabet = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '3', 'i', 'j','.', 'k', 'l', '4', 'm', ' ', 'n', '5', 'o', 'p', ':', 'q', 'r', '6', 's', 't', '\'', 'u', 'v', '7', 'w', 'x', '8', 'y', 'z', '?', '9']
 
 def convert(text):
   text = text.strip()
@@ -32,10 +31,10 @@ def convert(text):
       return "Sorry, \"" + input + "\" is not supported."
       
     key = (alphabet.index(input) + mult)
-    if key > 40:
+    if key > 42:
       key = 0
     elif key < 0:
-      key = 40
+      key = 42
     """      
     if uppercase == 0:
       output += alphabet[key].lower()
@@ -55,7 +54,7 @@ def convert(text):
 
 print("")
 
-print("Welcome to ComplexCipher v1.5 by Om Gupta!")
+print("Welcome to ComplexCipher v1.1 by Om Gupta!")
 
 quit_wish = "y"
 
