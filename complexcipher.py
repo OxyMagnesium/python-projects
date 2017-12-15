@@ -19,14 +19,7 @@ def convert(text):
 
     if input == "`":
       input = " "
-    """  
-    if input == input.lower():
-      uppercase = 0
-      input = input.lower()
-    elif input == input.upper():
-      uppercase = 1
-      input = input.lower()
-    """
+
     if input not in alphabet:
       return "Sorry, \"" + input + "\" is not supported."
       
@@ -35,12 +28,6 @@ def convert(text):
       key = 0
     elif key < 0:
       key = 42
-    """      
-    if uppercase == 0:
-      output += alphabet[key].lower()
-    elif uppercase == 1:
-      output += alphabet[key].upper()
-    """
 
     output += alphabet[key] #Also temporary
     
@@ -54,7 +41,7 @@ def convert(text):
 
 print("")
 
-print("Welcome to ComplexCipher v1.1 by Om Gupta!")
+print("Welcome to ComplexCipher v1.1.2 by Om Gupta!")
 
 quit_wish = "y"
 
@@ -72,7 +59,7 @@ while quit_wish == "y":
 
   print("")
 
-  print("Special characters except (!), (?), (,) and (') are not supported.")
+  print("Special characters except (!), (?), (.), (:), (,) and (') are not supported.")
   text = input("Enter text to be " + function + "d: ")
 
   print("")
