@@ -15,7 +15,7 @@ def convert(text):
     uppercase = "N/A"
     input = text[letter]
 
-    input = input.lower() #Temporary until I figure out a way to make capitals work
+    input = input.lower() 
 
     if input == "`":
       input = " "
@@ -25,14 +25,22 @@ def convert(text):
       
     key = (alphabet.index(input) + mult)
     if key > 42:
-      key = 0
+      key = (key - 42) - 1
     elif key < 0:
-      key = 42
+      key = (key + 42) + 1
 
-    output += alphabet[key] #Also temporary
-    
+    output += alphabet[key]
+
+    if mult > 0:
+      mult += 1
+    elif mult < 0:
+      mult -= 1
     mult *= -1
-
+    if mult > 42:
+      mult = 1
+    elif mult < -42:
+      mult = -1
+    
   if output[0] == " ":
     output = "`" + output[1:len(output)]
   if output[(len(output) - 1)] == " ":
@@ -41,7 +49,7 @@ def convert(text):
 
 print("")
 
-print("Welcome to ComplexCipher v1.1.2 by Om Gupta!")
+print("Welcome to ComplexCipher v1.2.1 by Om Gupta!")
 
 quit_wish = "y"
 
