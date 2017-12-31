@@ -1,5 +1,5 @@
 
-alphabet = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '3', 'i', 'j','.', 'k', 'l', '4', 'm', ' ', 'n', '5', 'o', 'p', ':', 'q', 'r', '6', 's', 't', '\'', 'u', 'v', '7', 'w', 'x', '8', 'y', 'z', '?', '9']
+dictionary = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '3', 'i', 'j','.', 'k', 'l', '4', 'm', ' ', 'n', '5', 'o', 'p', ':', 'q', 'r', '6', 's', 't', '\'', 'u', 'v', '7', 'w', 'x', '8', 'y', 'z', '?', '9']
 
 def convert(text):
   text = text.strip()
@@ -11,25 +11,25 @@ def convert(text):
   elif function == "decode":
     mult = -1
 
-  for letter in range(len(text)):  
+  for letter in range(len(text)):
     uppercase = "N/A"
     input = text[letter]
 
-    input = input.lower() 
+    input = input.lower()
 
     if input == "`":
       input = " "
 
-    if input not in alphabet:
+    if input not in dictionary:
       return "Sorry, \"" + input + "\" is not supported."
-      
-    key = (alphabet.index(input) + mult)
+
+    key = (dictionary.index(input) + mult)
     if key > 42:
       key = (key - 42) - 1
     elif key < 0:
       key = (key + 42) + 1
 
-    output += alphabet[key]
+    output += dictionary[key]
 
     if mult > 0:
       mult += 1
@@ -40,7 +40,7 @@ def convert(text):
       mult = 1
     elif mult < -42:
       mult = -1
-    
+
   if output[0] == " ":
     output = "`" + output[1:len(output)]
   if output[(len(output) - 1)] == " ":
@@ -63,7 +63,7 @@ while quit_wish == "y":
       makes_sense = "y"
     else:
       print("")
-      print("Sorry, that doesn't make sense.")      
+      print("Sorry, that doesn't make sense.")
 
   print("")
 
