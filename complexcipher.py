@@ -7,9 +7,9 @@ def convert(text): #Main function.
   output = ""
   mult = 0
 
-  if function == "encode": #Checking whether to encode or decode.
+  if function == "encode" or function == "e": #Checking whether to encode or decode.
     mult = 1
-  elif function == "decode":
+elif function == "decode" or function == "d":
     mult = -1
 
 #Algorithm start
@@ -69,7 +69,7 @@ while quit_wish == "y":
     function = input("Enter function to be performed. (Encode/Decode): ")
     function = function.lower()
     function = function.strip()
-    if function == "encode" or function == "decode":
+    if function == "encode" or function == "decode" or function == "e" or function == "d":
       makes_sense = "y"
     else:
       print("")
