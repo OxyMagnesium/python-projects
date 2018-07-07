@@ -9,7 +9,7 @@ def convert(text): #Main function.
 
   if function == "encode" or function == "e": #Checking whether to encode or decode.
     mult = 1
-elif function == "decode" or function == "d":
+  elif function == "decode" or function == "d":
     mult = -1
 
 #Algorithm start
@@ -59,7 +59,7 @@ elif function == "decode" or function == "d":
 
 print("")
 
-print("Welcome to ComplexCipher v1.2.2 by Om Gupta!")
+print("Welcome to ComplexCipher v1.2.3 by Om Gupta!")
 
 quit_wish = "y"
 
