@@ -4,12 +4,12 @@ print("Welcome to SuperSimpleCipher v1.0 by Om Gupta.")
 
 print("")
 
-alphabet = [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+dictionary = [' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 def encode(word):
     result = ""
     for letter in range(len(word)):
-        result += str(alphabet.index(word[letter])) + " "
+        result += str(dictionary.index(word[letter])) + " "
     print(result)
 
 def decode(code):
@@ -24,7 +24,7 @@ def decode(code):
         elif code[number] == " ":
             l_end = number
         if l_start != "" and l_end != "":
-          result += alphabet[int(code[l_start:l_end])]
+          result += dictionary[int(code[l_start:l_end])]
           l_start = ""
           l_end = ""
     print(result)
