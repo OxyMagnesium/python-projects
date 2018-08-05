@@ -62,21 +62,23 @@ print("")
 print("Processing...")
 
 name = ""
+price = ""
 link = ""
 
-while str(*name) == "" and str(*link) == "":
+while str(*name) == "" and str(*link) == "" and str(*price) == "":
     page = driver.page_source
     tree = html.fromstring(page)
     name = tree.xpath('(//td[@class="tdname"]/a/text())[1]')
+    price = tree.xpath('(//td[@class="tdprice"]/text())[1]')
     link = tree.xpath('(//td[@class="tdname"]/a/@href)[1]')
 
 driver.quit()
 
 print("")
 
-print("Found recommended GPU.")
-print("Name: " + str(*name))
-print("PCPP link: https://pcpartpicker.com" + str(*link))
+print("Found recommended GPU:")
+print(str(*name) + " - " + str(*price))
+print("https://pcpartpicker.com" + str(*link))
 
 print("")
 
