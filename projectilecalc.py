@@ -2,8 +2,16 @@ import math
 
 pi = 3.14
 def avg(a,b):
-    c = (a + b)/2
-    return c
+    return (a+b)/2
+
+def clean(x):
+    return str(round(x,2))
+
+def calcrange(t,u):
+    return clean(u*u*math.sin(2*math.radians(t))/9.8) + " m"
+
+def calcvel(t,r):
+    return clean(math.sqrt(r*9.8/math.sin(2*math.radians(t)))) + " m/s"
 
 def calctheta(r,u):
     count = 0
@@ -20,20 +28,37 @@ def calctheta(r,u):
         if round(u2g*math.sin(2*guess),2) == r:
             break
         count += 1
-    if(count < cutoff):
-        return str(round(math.degrees(guess),2)) + " degrees"
+    if count < cutoff:
+        return clean(math.degrees(guess)) + " degrees"
     else:
         return "It is not possible to hit the target."
-                  
-r = float(input("Enter the distance to target (m): "))
-u = float(input("Enter the projection velocity (m/s): "))
+
+#Program start
+
+func = input("Enter component to calculate (Range/Launch velocity/Launch angle): ")
 
 print("")
 
-print("Result:\n" + calctheta(r,u))
+if func.lower() == 'range' or func.lower() == 'launch velocity':
+    t = float(input("Enter the launch angle (degrees): "))
+
+if func.lower() == 'launch velocity' or func.lower() == 'launch angle':
+    r = float(input("Enter the target distance (m): "))
+
+if func.lower() == 'launch angle' or func.lower() == 'range':
+    u = float(input("Enter the launch velocity (m/s): "))
 
 print("")
 
-end_stop = input("Press enter to quit")
+if func.lower() == 'range':
+    print("Result: %s"%(calcrange(t,u)))
 
-    
+if func.lower() == 'launch velocity':
+    print("Result: %s"%(calcvel(t,r)))
+
+if func.lower() == 'launch angle':
+    print("Result: %s"%(calctheta(r,u)))
+
+print("")
+
+end_stop = input("Press enter to quit.")
