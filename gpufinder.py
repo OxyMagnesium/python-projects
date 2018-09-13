@@ -19,7 +19,7 @@ CPU = {
                    }
        ,
        'xpulist' : '''
-                    
+
                    '''
       }
 
@@ -53,24 +53,20 @@ GPU = {
 #-------------------------------------------------------------------------------
 
 def get_partlist():
-    ask = True
-    while ask == True:
+    while True:
         intake = input("Enter part category (CPU/GPU): ").lower()
         if intake == 'cpu':
-            ask == False
             return CPU
-        elif intake == 'gpu':
-            ask == False
+        if intake == 'gpu':
             return GPU
-        else:
-            print("ERROR: Invalid input. Try again.\n")
+
+        print("ERROR: Invalid input. Try again.\n")
 
 
 def get_partlink():
     print(partlist['xputext'])
 
-    ask = True
-    while ask == True:
+    while True:
         part = input("Enter part tier: ")
         for tier in partlist['xpulink']:
             if str(tier) == str(part):
