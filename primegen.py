@@ -1,3 +1,4 @@
+import math
 import time
 
 prime = 2
@@ -11,7 +12,7 @@ start_time = time.time()
 print("Starting...")
 
 while prime <= int(endno):
-    for i in range(2, (prime - 1)):
+    for i in range(2, int(math.sqrt(prime))):
         if prime % i == 0:
             is_prime = False
             break
