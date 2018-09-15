@@ -1,20 +1,31 @@
+import random
+
 dictionary = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '3', 'i', 'j','.', 'k', 'l', '4', 'm', ' ', 'n', '5', 'o', 'p', ':', 'q', 'r', '6', 's', 't', '\'', 'u', 'v', '7', 'w', 'x', '8', 'y', 'z', '?', '9']
 
 #Function start
 
 def convert(text): #Main function.
   text = text.strip() #Setting up requirements for the algorithm.
-  output = ""
-  mult = 0
+  offset_included = 0
 
-  if function == "encode" or function == "e": #Checking whether to encode or decode.
-    mult = 1
-  elif function == "decode" or function == "d":
-    mult = -1
+  if function == "encode" or function == "e": #Checking whether to encode or decode. If encoding, a random offset is added to the front of the string and used to offset the multiplier, increasing scrambling.
+    random.seed()
+    offset = random.randint(1,9)
+
+    mult = 1 * offset
+    output = "%s" % offset
+
+  elif function == "decode" or function == "d": #If decoding, the offset is retrieved from the front of the string and that character is skipped by the algorithm.
+    offset = int(text[0])
+    offset_included = 1
+
+    mult = -1 * offset
+    output = ""
 
 #Algorithm start
 
-  for letter in range(len(text)): #Main algorithm.
+  for letter in range(offset_included,len(text)): #Main algorithm.
+
     uppercase = "N/A"
     input = text[letter] #Taking the first character.
 
@@ -26,9 +37,9 @@ def convert(text): #Main function.
     if input not in dictionary: #Checking if the user entered an unsupported character.
       return "Sorry, \"" + input + "\" is not supported."
 
-    key = (dictionary.index(input) + mult) #Converts the input character into its index in the dictionary, and then adds the multiplier to it toconvert it to something else.
+    key = (dictionary.index(input) + mult) #Converts the input character into its index in the dictionary, and then adds the multiplier to it to convert it to something else.
 
-    if key > 42: #Ensuring that the new index is in the range of the dictionary.
+    if key > 42: #Ensuring that the index is in the range of the dictionary.
       key = (key - 42) - 1
     elif key < 0:
       key = (key + 42) + 1
@@ -47,9 +58,7 @@ def convert(text): #Main function.
 
 #Algorithm end
 
-  if output[0] == " ": #If the first or last characters are spaces, they are converted to "`" so they aren't lost.
-    output = "`" + output[1:len(output)]
-  if output[(len(output) - 1)] == " ":
+  if output[(len(output) - 1)] == " ": #If the last character is a space, it is replaced with "`" so it isn't lost.
     output = output[0:(len(output) - 1)] + "`"
 
   return output
@@ -59,7 +68,7 @@ def convert(text): #Main function.
 
 print("")
 
-print("Welcome to ComplexCipher v1.2.3 by Om Gupta!")
+print("Welcome to ComplexCipher v1.3.1 by Om Gupta!")
 
 quit_wish = "y"
 
