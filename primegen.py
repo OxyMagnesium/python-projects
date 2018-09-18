@@ -12,7 +12,7 @@ start_time = time.time()
 print("Starting...")
 
 while prime <= int(endno):
-    for i in range(2, int(math.sqrt(prime))):
+    for i in range(2, int(math.sqrt(prime)) + 1):
         if prime % i == 0:
             is_prime = False
             break
