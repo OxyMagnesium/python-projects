@@ -6,7 +6,7 @@ dictionary = ['0', '!', 'a', 'b', '1', 'c', 'd', '2', 'e', 'f', ',', 'g', 'h', '
 
 def convert(text): #Main function.
   text = text.strip() #Setting up requirements for the algorithm.
-  offset_included = 0
+  offset_included = False
 
   if function == "encode" or function == "e": #Checking whether to encode or decode. If encoding, a random offset is added to the front of the string and used to offset the multiplier, increasing scrambling.
     random.seed()
@@ -17,50 +17,40 @@ def convert(text): #Main function.
 
   elif function == "decode" or function == "d": #If decoding, the offset is retrieved from the front of the string and that character is skipped by the algorithm.
     offset = int(text[0])
-    offset_included = 1
+    offset_included = True
 
     mult = -1 * offset
     output = ""
 
 #Algorithm start
 
-  for letter in range(offset_included,len(text)): #Main algorithm.
+  for letter in range(offset_included,len(text)):
+    input = text[letter].lower() #Taking the first character.
 
-    uppercase = "N/A"
-    input = text[letter] #Taking the first character.
-
-    input = input.lower() #Making it lowercase.
-
-    if input == "`": #"`" Represents a space, since a space would be otherwise deleted by line 6. This turns it back into a space.
+    if input == "`": #"`" is converted back into a space.
       input = " "
 
     if input not in dictionary: #Checking if the user entered an unsupported character.
       return "Sorry, \"" + input + "\" is not supported."
 
     key = (dictionary.index(input) + mult) #Converts the input character into its index in the dictionary, and then adds the multiplier to it to convert it to something else.
-
-    if key > 42: #Ensuring that the index is in the range of the dictionary.
-      key = (key - 42) - 1
-    elif key < 0:
-      key = (key + 42) + 1
+    key %= 42 #Ensuring that the index is in the range of the dictionary.
 
     output += dictionary[key] #Converting the new index to a character and adding it to the output string.
+    print("%s -> %s" % (input,dictionary[key]))
 
-    if mult > 0: #Increasing the multiplier to increase the scrambling. The multiplier must not exceed +-42 because if it does, then it will cause an error when added to the string.
-      mult += 1
+    if mult > 0: #Increasing and flipping the multiplier to increase the scrambling.
+      mult += offset
     elif mult < 0:
-      mult -= 1
+      mult -= offset
     mult *= -1
-    if mult > 42:
-      mult = 1
-    elif mult < -42:
-      mult = -1
 
 #Algorithm end
 
   if output[(len(output) - 1)] == " ": #If the last character is a space, it is replaced with "`" so it isn't lost.
     output = output[0:(len(output) - 1)] + "`"
 
+  print("")
   return output
 
 #Function end
@@ -68,18 +58,15 @@ def convert(text): #Main function.
 
 print("")
 
-print("Welcome to ComplexCipher v1.3.1 by Om Gupta!")
+print("Welcome to ComplexCipher v1.3.2 by Om Gupta!")
 
 quit_wish = "y"
 
 while quit_wish == "y":
-  makes_sense = "n"
-  while makes_sense == "n":
-    function = input("Enter function to be performed. (Encode/Decode): ")
-    function = function.lower()
-    function = function.strip()
+  while True:
+    function = (input("Enter function to be performed. (Encode/Decode): ").lower()).strip()
     if function == "encode" or function == "decode" or function == "e" or function == "d":
-      makes_sense = "y"
+      break
     else:
       print("")
       print("Sorry, that doesn't make sense.")
@@ -96,11 +83,10 @@ while quit_wish == "y":
 
   print("")
 
-  makes_sense = "n"
-  while makes_sense == "n":
+  while True:
     quit_wish = input("Do you want to continue? (Y/N): ").lower()
     if quit_wish == "y" or quit_wish == "n":
-      makes_sense = "y"
+      break
     else:
       print("")
       print("Sorry, that doesn't make sense.")
@@ -108,3 +94,5 @@ while quit_wish == "y":
 print("")
 
 end_stop = input("Press enter to quit.")
+
+#Program end
