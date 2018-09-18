@@ -15,7 +15,7 @@ def convert(text): #Main function.
     mult = 1 * offset
     output = "%s" % offset
 
-  elif function == "decode" or function == "d": #If decoding, the offset is retrieved from the front of the string and that character is skipped by the algorithm.
+  elif function == "decode" or function == "d": #If decoding, the initial offset is retrieved from the front of the string and that character is skipped by the algorithm.
     offset = int(text[0])
     offset_included = True
 
@@ -37,9 +37,10 @@ def convert(text): #Main function.
     key %= 42 #Ensuring that the index is in the range of the dictionary.
 
     output += dictionary[key] #Converting the new index to a character and adding it to the output string.
-    print("%s -> %s" % (input,dictionary[key]))
+    print("%s -> %s (%s,%s)" % (input,dictionary[key],mult,key))
 
-    if mult > 0: #Increasing and flipping the multiplier to increase the scrambling.
+    offset += 1 #Increasing offset, increasing and flipping multiplier for maximum scrambling.
+    if mult > 0:
       mult += offset
     elif mult < 0:
       mult -= offset
@@ -58,7 +59,7 @@ def convert(text): #Main function.
 
 print("")
 
-print("Welcome to ComplexCipher v1.3.2 by Om Gupta!")
+print("Welcome to ComplexCipher v1.3.3 by Om Gupta!")
 
 quit_wish = "y"
 
