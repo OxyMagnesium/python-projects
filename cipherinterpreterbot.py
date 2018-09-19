@@ -40,7 +40,7 @@ def decode(text):
   return output
 
 #Function end
-#Prpgram start
+#Program start
 
 import discord
 
