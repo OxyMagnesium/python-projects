@@ -50,13 +50,15 @@ client = discord.Client()
 
 @client.event
 async def on_message(message):
+    message.content = content
+
     if message.author == client.user:
         return
 
     print("\nChecking message by %s in %s..." % (message.author,message.channel))
 
-    if int(message.content[0:(int(message.content[0]) + 1)]) in range(11,99999):
-        msg = ('{0.author.mention} said in %s:\n```\"%s\"```' % (message.channel, decode(message.content))).format(message)
+    if int(content[0:(int(content[0]) + 1)]) in range(11,99999):
+        msg = ('{0.author.mention} said in %s:\n```\"%s\"```' % (message.channel, decode(content))).format(message)
         await client.send_message(client.get_channel('491938711693426688'),msg)
         print("Succesfully decoded.")
 
